@@ -18,10 +18,12 @@ async def rss_updater(client):
 
 
 async def parse_free():
-    free = [x for x in NewsFeed if (
-        "[giveaway]" in x.title and "Twitch Prime" not in x.title and "IndieGala" not in x.title and "Humble Monthly Subscribers" not in x.title and "GOG Connect" not in x.title and "Humble Choice Subscribers" not in x.title and "Amazon Prime Gaming" not in x.title)]
+    blocked_words = ["Twitch Prime", "IndieGala", "Humble Monthly Subscribers", "GOG Connect", "Humble Choice Subscribers", "Amazon Prime Gaming"]
+
     NewsFeed = feedparser.parse(
         "https://isthereanydeal.com/rss/specials/eu2/").entries
+    free = [x for x in NewsFeed if (
+        "[giveaway]" in x.title and all(y not in x.title for y in blocked_words))]
     free = free[::-1]
     return free
 
