@@ -18,7 +18,7 @@ async def rss_updater(client):
 
 
 async def parse_free():
-    blocked_words = ["Twitch Prime", "IndieGala", "Humble Monthly Subscribers", "GOG Connect", "Humble Choice Subscribers", "Amazon Prime Gaming"]
+    blocked_words = ["Twitch Prime", "IndieGala", "Humble Monthly Subscribers", "GOG Connect", "Humble Choice Subscribers", "Amazon Prime Gaming", "Prime Gaming Giveaways"]
 
     NewsFeed = feedparser.parse(
         "https://isthereanydeal.com/rss/specials/eu2/").entries
